@@ -22,10 +22,6 @@ execute "install_codedeploy_agent" do
   user "root"
 end
 
-# service "codedeploy-agent" do
-#   action [:enable, :start]
-# end
-
 ## ----------
 ## Initializes app directory
 ## ----------

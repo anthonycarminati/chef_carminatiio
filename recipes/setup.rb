@@ -52,7 +52,7 @@ end
 ## Create Nginx config file on the box
 ## ----------
 cookbook_file '/etc/nginx/sites-enabled/carminatiio' do
-  source 'carminatiio.conf'
+  source 'carminatiio'
   action :create
 end
 

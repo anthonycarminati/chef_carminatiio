@@ -51,13 +51,19 @@ link '/etc/nginx/sites-available/carminatiio' do
 end
 
 ## ----------
-## Create Nginx config file on the box
+## Create nginx config file on the box
 ## ----------
 cookbook_file '/etc/nginx/sites-enabled/carminatiio' do
   source 'carminatiio'
   action :create
 end
 
+## ----------
+## Restart nginx
+## ----------
+service 'nginx' do
+  action :restart
+end
 
 ## ----------
 ## Drop supervisor config file

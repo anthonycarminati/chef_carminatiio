@@ -38,3 +38,9 @@ end
 # #        not_if "[ `pip freeze | grep #{pkg} | cut -d'=' -f3` = '#{version}' ]"
 #     end
 # end
+
+
+## ----------
+## Restart nginx service
+## ----------
+

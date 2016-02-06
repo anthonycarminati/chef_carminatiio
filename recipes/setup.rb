@@ -46,7 +46,9 @@ end
 ## ----------
 ## Create symlink for nginx between sites-enabled and sites-available
 ## ----------
-
+link '/etc/nginx/sites-available/carminatiio' do
+  to '/etc/ntinx/sites-enabled/carminatiio'
+end
 
 ## ----------
 ## Create Nginx config file on the box

@@ -33,3 +33,19 @@ end
 service 'nginx' do
   action :restart
 end
+
+
+## ----------
+## Reread supervisor config
+## ----------
+service 'supervisor' do
+  action :reread
+end
+
+
+## ----------
+## Restart supervisor service
+## ----------
+service 'supervisor' do
+  action :update
+end

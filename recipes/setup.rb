@@ -22,6 +22,7 @@ execute "install_codedeploy_agent" do
   user "root"
 end
 
+
 ## ----------
 ## TODO: Create web app user
 ## ----------
@@ -52,6 +53,7 @@ link '/etc/nginx/sites-available/carminatiio' do
   to '/etc/ntinx/sites-enabled/carminatiio'
 end
 
+
 ## ----------
 ## Create nginx config file on the box
 ## ----------
@@ -64,10 +66,6 @@ end
 ## ----------
 ## Create supervisor config file on the box
 ## ----------
-# cookbook_file '/etc/supervisor/conf.d/carminatiio.conf' do
-#   source 'carminatiio.conf'
-#   action :create
-# end
 template "/etc/supervisor/conf.d/carminatiio.conf" do #node[:service_config][:supervisor_config] do
   source 'supervisor.erb'
   owner 'root'
@@ -83,3 +81,4 @@ template "/etc/supervisor/conf.d/carminatiio.conf" do #node[:service_config][:su
       :FLASK_CONFIG => node[:app_config][:env_var][:FLASK_CONFIG]
             })
 end
+

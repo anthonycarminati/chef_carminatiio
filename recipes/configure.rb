@@ -38,14 +38,14 @@ end
 ## ----------
 ## Reread supervisor config
 ## ----------
-service 'supervisor' do
-  action :reread
-end
+# service 'supervisor' do
+#   action :reread  # reread not an option
+# end
 
 
 ## ----------
 ## Restart supervisor service
 ## ----------
-service 'supervisor' do
-  action :update
-end
+# service 'supervisor' do
+#   action :update
+# end

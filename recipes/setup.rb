@@ -45,6 +45,11 @@ file '/etc/nginx/sites-enabled/default' do
   action :delete
 end
 
+link '/etc/nginx/sites-enabled/default' do
+  action :delete
+  only_if 'test -L /etc/nginx/sites-enabled/default'
+end
+
 
 ## ----------
 ## Create symlink for nginx between sites-enabled and sites-available

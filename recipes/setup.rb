@@ -41,9 +41,9 @@ end
 ## ----------
 ## Delete default nginx file from the box
 ## ----------
-file '/etc/nginx/sites-enabled/default' do
-  action :delete
-end
+# file '/etc/nginx/sites-enabled/default' do
+#   action :delete
+# end
 
 link '/etc/nginx/sites-enabled/default' do
   action :delete

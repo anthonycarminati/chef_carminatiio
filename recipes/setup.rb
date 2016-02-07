@@ -23,7 +23,7 @@ execute "install_codedeploy_agent" do
 end
 
 ## ----------
-## Create web app user
+## TODO: Create web app user
 ## ----------
 
 
@@ -37,7 +37,7 @@ directory '/opt/carminatiio/' do
 end
 
 ## ----------
-## Drop default nginx file from the box
+## Delete default nginx file from the box
 ## ----------
 file '/etc/nginx/sites-enabled/default' do
   action :delete
@@ -59,12 +59,9 @@ cookbook_file '/etc/nginx/sites-enabled/carminatiio' do
 end
 
 ## ----------
-## Restart nginx
+## Create supervisor config file on the box
 ## ----------
-service 'nginx' do
-  action :restart
+cookbook_file '/etc/supervisor/conf.d/carminatiio.conf' do
+  source 'carminatiio.conf'
+  action :create
 end
-
-## ----------
-## Drop supervisor config file
-## ----------

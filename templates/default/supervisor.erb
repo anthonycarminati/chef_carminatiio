@@ -2,4 +2,3 @@
 command = gunicorn manage:app
 directory = /opt/carminatiio
 user = root
-environment = MAIL_SERVER="<%= MAIL_SERVER %>", MAIL_PORT=<%= MAIL_PORT %>, MAIL_USERNAME="<%= MAIL_USERNAME %>", MAIL_PASSWORD="<%= MAIL_PASSWORD %>", MAIL_USE_SSL=<%= MAIL_USE_SSL %>, MAIL_USE_TLS=<%= MAIL_USE_TLS %>, SQLALCHEMY_DATABASE_URI="<%= SQLALCHEMY_DATABASE_URI %>", FLASK_CONFIG="<%= FLASK_CONFIG %>"

@@ -36,12 +36,14 @@ directory '/opt/carminatiio/' do
   recursive true
 end
 
+
 ## ----------
 ## Delete default nginx file from the box
 ## ----------
 file '/etc/nginx/sites-enabled/default' do
   action :delete
 end
+
 
 ## ----------
 ## Create symlink for nginx between sites-enabled and sites-available
@@ -58,10 +60,26 @@ cookbook_file '/etc/nginx/sites-enabled/carminatiio' do
   action :create
 end
 
+
 ## ----------
 ## Create supervisor config file on the box
 ## ----------
-cookbook_file '/etc/supervisor/conf.d/carminatiio.conf' do
-  source 'carminatiio.conf'
-  action :create
+# cookbook_file '/etc/supervisor/conf.d/carminatiio.conf' do
+#   source 'carminatiio.conf'
+#   action :create
+# end
+template node[:service_config][:supervisor_config] do
+  source 'supervisor.erb'
+  owner 'root'
+  group 'root'
+  variables({
+      :MAIL_SERVER => node[:app_config][:env_var][:MAIL_SERVER],
+      :MAIL_PORT => node[:app_config][:env_var][:MAIL_PORT],
+      :MAIL_USERNAME => node[:app_config][:env_var][:MAIL_USERNAME],
+      :MAIL_PASSWORD => node[:app_config][:env_var][:MAIL_PASSWORD],
+      :MAIL_USE_SSL => node[:app_config][:env_var][:MAIL_USE_SSL],
+      :MAIL_USE_TLS => node[:app_config][:env_var][:MAIL_USE_TLS],
+      :SQLALCHEMY_DATABASE_URI => node[:app_config][:env_var][:SQLALCHEMY_DATABASE_URI],
+      :FLASK_CONFIG => node[:app_config][:env_var][:FLASK_CONFIG]
+            })
 end

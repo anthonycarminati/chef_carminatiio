@@ -68,7 +68,7 @@ end
 #   source 'carminatiio.conf'
 #   action :create
 # end
-template node[:service_config][:supervisor_config] do
+template "/etc/supervisor/conf.d/carminatiiio.conf" do #node[:service_config][:supervisor_config] do
   source 'supervisor.erb'
   owner 'root'
   group 'root'

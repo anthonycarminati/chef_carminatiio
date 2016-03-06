@@ -39,6 +39,16 @@ end
 
 
 ## ----------
+## Initializes log directory
+## ----------
+directory '/opt/logs/carminatiio/' do
+  owner 'root'
+  group 'root'
+  recursive true
+end
+
+
+## ----------
 ## Delete default nginx file from the box
 ## ----------
 # file '/etc/nginx/sites-enabled/default' do

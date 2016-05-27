@@ -51,10 +51,6 @@ end
 ## ----------
 ## Delete default nginx file from the box
 ## ----------
-# file '/etc/nginx/sites-enabled/default' do
-#   action :delete
-# end
-
 link '/etc/nginx/sites-enabled/default' do
   action :delete
   only_if 'test -L /etc/nginx/sites-enabled/default'
@@ -72,7 +68,7 @@ end
 ## ----------
 ## Create SSL cert on the box
 ## ----------
-template "/etc/ssl/star_carminati_io.crt" do #node[:service_config][:supervisor_config] do
+template "/etc/ssl/star_carminati_io.crt" do
   source 'ssl_cert.erb'
   owner 'root'
   group 'root'
@@ -86,7 +82,7 @@ end
 ## ----------
 ## Create SSL key on the box
 ## ----------
-template "/etc/ssl/star_carminati_io.key" do #node[:service_config][:supervisor_config] do
+template "/etc/ssl/star_carminati_io.key" do
   source 'ssl_cert_key.erb'
   owner 'root'
   group 'root'
@@ -99,16 +95,24 @@ end
 ## ----------
 ## Create nginx config file on the box
 ## ----------
-cookbook_file '/etc/nginx/sites-enabled/carminatiio' do
-  source 'carminatiio'
-  action :create
+# cookbook_file '/etc/nginx/sites-enabled/carminatiio' do
+#   source 'carminatiio'
+#   action :create
+# end
+template "/etc/nginx/sites-enabled/carminatiio" do
+  source 'nginx_config_contents.erb'
+  owner 'root'
+  group 'root'
+  variables({
+                :nginx_config_contents => node[:app_config][:nginx_config_contents]
+            })
 end
 
 
 ## ----------
 ## Create supervisor config file on the box
 ## ----------
-template "/etc/supervisor/conf.d/carminatiio.conf" do #node[:service_config][:supervisor_config] do
+template "/etc/supervisor/conf.d/carminatiio.conf" do
   source 'supervisor.erb'
   owner 'root'
   group 'root'

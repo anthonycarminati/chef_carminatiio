@@ -104,7 +104,7 @@ template "/etc/nginx/sites-enabled/carminatiio" do
   owner 'root'
   group 'root'
   variables({
-                :nginx_config_contents => node[:app_config][:nginx_config_contents]
+                :nginx_config_contents => node[:service_config][:nginx_config_contents]
             })
 end
 

@@ -9,8 +9,8 @@ server {
      listen 443;
 
      ssl on;
-     ssl_certificate /etc/star_carminati_io.crt;
-     ssl_certificate_key /etc/star_carminati_io.key;
+     ssl_certificate /etc/ssl/star_carminati_io.crt;
+     ssl_certificate_key /etc/ssl/star_carminati_io.key;
 
      server_name www.carminati.io;
      access_log /var/log/nginx/nginx.vhost.access.log;

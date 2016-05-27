@@ -72,7 +72,7 @@ end
 ## ----------
 ## Create SSL cert on the box
 ## ----------
-template "/etc/star_carminati_io.crt" do #node[:service_config][:supervisor_config] do
+template "/etc/ssl/star_carminati_io.crt" do #node[:service_config][:supervisor_config] do
   source 'ssl_cert.erb'
   owner 'root'
   group 'root'

@@ -1,31 +1,26 @@
 server {
-	listen 80 default_server;
-	listen [::]:80 default_server;
-	server_name carminati.io www.carminati.io;
-	return 301 https://$server_name$request_uri;
+    listen 80;
+    listen [::]:80;
+    server_name dev.carminati.io;
+    return 301 https://$server_name$request_uri;
 }
 
- server {
-     listen 443;
+server {
+    listen 443;
 
-     ssl on;
-     ssl_certificate /etc/ssl/star_carminati_io.crt;
-     ssl_certificate_key /etc/ssl/star_carminati_io.key;
+    ssl on;
+    ssl_certificate /etc/ssl/star_carminati_io.crt;
+    ssl_certificate_key /etc/ssl/star_carminati_io.key;
 
-     server_name www.carminati.io;
-     access_log /var/log/nginx/nginx.vhost.access.log;
-     error_log /var/log/nginx/nginx.vhost.error.log;
+    server_name dev.carminati.io;
+    access_log /var/log/nginx/nginx.vhost.access.log;
+    error_log /var/log/nginx/nginx.vhost.error.log;
 
-     location / {
-     		# checks for static files; if not found, proxy to app
-     		try_files $uri @proxy_to_app;
-     	}
-
-     	location @proxy_to_app {
-     		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-     		proxy_set_header Host $http_host;
-     		proxy_redirect off;
-
-     		proxy_pass http://app_server;
-     	}
- }
+    location / {
+        proxy_set_header Host $http_host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_pass http://unix:/home/user/ubuntu/my_application.sock;
+    }
+}

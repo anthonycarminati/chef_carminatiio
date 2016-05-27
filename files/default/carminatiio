@@ -1,7 +1,22 @@
 server {
+	listen 80 default_server;
+	listen [::]:80 default_server;
+	server_name carminati.io www.carminati.io;
+	return 301 https://$server_name$request_uri;
+}
+
+ server {
+     listen 443;
+
+     ssl on;
+     ssl_certificate /etc/star_carminati_io.crt;
+     ssl_certificate_key /etc/star_carminati_io.key;
+
+     server_name www.carminati.io;
+     access_log /var/log/nginx/nginx.vhost.access.log;
+     error_log /var/log/nginx/nginx.vhost.error.log;
      location / {
-         proxy_pass http://localhost:8000;
-         proxy_set_header Host $host;
-         proxy_set_header X-Real-IP $remote_addr;
+         root /home/www/public_html/www.carminati.io/public/;
+         index index.html;
      }
  }

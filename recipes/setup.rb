@@ -70,6 +70,20 @@ end
 
 
 ## ----------
+## Create SSL cert on the box
+## ----------
+template "/etc/star_carminati_io.crt" do #node[:service_config][:supervisor_config] do
+  source 'ssl_cert.erb'
+  owner 'root'
+  group 'root'
+  variables({
+                :ssl_cert => node[:app_config][:ssl_cert],
+                :ssl_cert_intermediary => node[:app_config][:ssl_cert_intermediary]
+            })
+end
+
+
+## ----------
 ## Create nginx config file on the box
 ## ----------
 cookbook_file '/etc/nginx/sites-enabled/carminatiio' do
@@ -96,4 +110,3 @@ template "/etc/supervisor/conf.d/carminatiio.conf" do #node[:service_config][:su
       :FLASK_CONFIG => node[:app_config][:env_var][:FLASK_CONFIG]
             })
 end
-

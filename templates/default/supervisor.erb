@@ -1,5 +1,5 @@
 [program:carminatiio]
-command = gunicorn --log-file /opt/logs/carminatiio/gunicorn.log --access-logfile /opt/logs/carminatiio/gunicorn_access.log --workers=3 -m 007 manage:app
+command = gunicorn --log-file /opt/logs/carminatiio/gunicorn.log --access-logfile /opt/logs/carminatiio/gunicorn_access.log manage:app
 directory = /opt/carminatiio
 user = root
 environment = MAIL_SERVER="<%= node[:app_config][:env_var][:MAIL_SERVER] %>",

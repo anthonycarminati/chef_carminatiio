@@ -1,4 +1,9 @@
-server { listen 80; listen [::]:80; server_name dev.carminati.io; return 301 https://$server_name$request_uri; }
+server {
+    listen 80;
+    listen [::]:80;
+    server_name dev.carminati.io;
+    return 301 https://$server_name$request_uri;
+}
 
 server {
     listen 443;
@@ -19,3 +24,13 @@ server {
         proxy_pass http://unix:/opt/carminatiio/my_application.sock;
     }
 }
+
+
+## CODE BELOW WORKS WHEN NOT USING SSL
+server {
+     location / {
+         proxy_pass http://localhost:8000;
+         proxy_set_header Host $host;
+         proxy_set_header X-Real-IP $remote_addr;
+     }
+ }

@@ -86,9 +86,7 @@ template "/etc/ssl/star_carminati_io.key" do
   source 'ssl_cert_key.erb'
   owner 'root'
   group 'root'
-  variables({
-                :ssl_cert_key => node[:app_config][:ssl_cert_key]
-            })
+  variables({:ssl_cert_key => node[:app_config][:ssl_cert_key]})
 end
 
 
@@ -103,9 +101,7 @@ template "/etc/nginx/sites-enabled/carminatiio" do
   source 'nginx_config_contents.erb'
   owner 'root'
   group 'root'
-  variables({
-                :nginx_config_contents => node[:service_config][:nginx_config_contents]
-            })
+  variables({:nginx_config_contents => node[:service_config][:nginx_config_contents]})
 end
 
 

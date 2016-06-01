@@ -2,12 +2,4 @@
 command = gunicorn --log-file /opt/logs/carminatiio/gunicorn.log --access-logfile /opt/logs/carminatiio/gunicorn_access.log manage:app
 directory = /opt/carminatiio
 user = root
-environment = MAIL_SERVER="<%= node[:app_config][:env_var][:MAIL_SERVER] %>"
-environment = MAIL_PORT=<%= node[:app_config][:env_var][:MAIL_PORT] %>
-environment = MAIL_USERNAME="<%= node[:app_config][:env_var][:MAIL_USERNAME] %>"
-environment = MAIL_PASSWORD="<%= node[:app_config][:env_var][:MAIL_PASSWORD] %>"
-environment = MAIL_USE_SSL=<%= node[:app_config][:env_var][:MAIL_USE_SSL] %>
-environment = MAIL_USE_TLS=<%= node[:app_config][:env_var][:MAIL_USE_TLS] %>
-environment = SQLALCHEMY_DATABASE_URI="<%= node[:app_config][:env_var][:SQLALCHEMY_DATABASE_URI] %>"
-environment = FLASK_CONFIG="<%= node[:app_config][:env_var][:FLASK_CONFIG] %>"
-environment = SECRET_KEY="<%= node[:app_config][:env_var][:SECRET_KEY] %>"
+environment = MAIL_SERVER="<%= node[:app_config][:env_var][:MAIL_SERVER] %>",environment = MAIL_PORT=<%= node[:app_config][:env_var][:MAIL_PORT] %>,environment = MAIL_USERNAME="<%= node[:app_config][:env_var][:MAIL_USERNAME] %>",environment = MAIL_PASSWORD="<%= node[:app_config][:env_var][:MAIL_PASSWORD] %>",environment = MAIL_USE_SSL=<%= node[:app_config][:env_var][:MAIL_USE_SSL] %>,environment = MAIL_USE_TLS=<%= node[:app_config][:env_var][:MAIL_USE_TLS] %>,environment = SQLALCHEMY_DATABASE_URI="<%= node[:app_config][:env_var][:SQLALCHEMY_DATABASE_URI] %>",environment = FLASK_CONFIG="<%= node[:app_config][:env_var][:FLASK_CONFIG] %>",environment = SECRET_KEY="<%= node[:app_config][:env_var][:SECRET_KEY] %>"
